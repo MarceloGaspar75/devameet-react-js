@@ -1,10 +1,11 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import logo from '../assets/images/logo.svg';
 import loginIcon from '../assets/images/mail.svg';
 import passwordIcon from '../assets/images/key.svg';
 import { PublicInput } from '../components/general/PublicInput';
 import { LoginServices } from '../services/LoginServices';
 import { Link, useSearchParams } from 'react-router-dom';
+import { AuthorizeConstext } from '../App';
 
 const loginServices = new LoginServices();
 
@@ -19,16 +20,18 @@ export const Login = () => {
     const [searchParams] = useSearchParams();
     const success = searchParams.get('success');
 
+    const {setToken} = useContext(AuthorizeConstext);
+
     const doLogin = async() => {
         try {
             setError('');
             if(!login || login.trim().length < 5 
-                || !password || password.length < 4){
+                || !password || password.trim().length < 4){
                  return setError('Favor preencher os campos corretamente.')
                 }   
                 
                 setLoading(true);
-                await loginServices.login({login, password});
+                await loginServices.login({login, password}, setToken);
                 setLoading(false);
         } catch (e:any) {
             console.log('Erro ao efetuar login:', e);
