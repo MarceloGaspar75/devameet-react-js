@@ -1,6 +1,6 @@
 import { Footer } from "../components/general/Footer";
 import { Header } from "../components/general/Header";
-import { MeetHome } from "../components/general/meet/MeetHome";
+import { MeetHome } from "../components/meet/MeetHome";
 
 export const Home = () => {
     return (

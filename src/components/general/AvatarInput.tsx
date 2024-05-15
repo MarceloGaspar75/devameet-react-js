@@ -70,7 +70,7 @@ export const AvatarInput: React.FC<AvatarInputProps> = ({image, setImage}) => {
                         <div className='avatars-scroll'>
                             <div className='avatars'>
                                 {avatars.map((avatar:any) =>
-                                <div className={'content-avatar ' + (selected === avatar.value ? 'selected' : '')} key={avatar.value}
+                                <div className={'container-avatar' + (selected === avatar.value ? 'selected' : '')} key={avatar.value}
                                     onClick={() => setSelected(avatar.value)}>
                                    <img src={getAvatarUrl(avatar.value)} />
                                 </div>
