@@ -5,10 +5,11 @@ import trashIcon from '../../assets/images/trash.svg';
 import { useNavigate } from 'react-router-dom';
 
 type MeetListItemProps ={
-    meet: any
+    meet: any,
+    selectToRemove(id: string):void
 }
 
-export const MeetListItem: React.FC <MeetListItemProps> = ({meet}) => {
+export const MeetListItem: React.FC <MeetListItemProps> = ({meet, selectToRemove}) => {
     const mobile = window.innerWidth <= 992;
 
     const navigate = useNavigate();
@@ -35,7 +36,7 @@ export const MeetListItem: React.FC <MeetListItemProps> = ({meet}) => {
                 {mobile && <img src={roomIcon} alt='Entrar na reunião' onClick={goToRoom}/>}
                 <img src={copyIcon} alt='Copiar link da reunião' onClick={copyLink}/>
                 {!mobile && <img src={editIcon} alt='Editar reunião' onClick={goToEdit}/>}
-                <img src={trashIcon} alt='Deletar reunião'/>
+                <img src={trashIcon} alt='Deletar reunião' onClick={() => selectToRemove(meet?.id)}/>
             </div>
         </div>
     );
