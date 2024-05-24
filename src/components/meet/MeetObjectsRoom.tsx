@@ -1,17 +1,32 @@
 import trashIcon from '../../assets/images/trash_object.svg';
 import rigthIcon from '../../assets/images/rotate_right.svg';
 import leftIcon from '../../assets/images/rotate_left.svg';
-import React from 'react';
+import React, { useEffect } from 'react';
 
 type MeetObjectsRoomType = {
     objects?: [],
     selected?: any,
     setSelected?(s:any):void,
-    removeObject?(o:any):void
+    removeObject?(o:any):void,
+    rotateObject?(o:any,  to: string):void,
+    moveSelected?(event:any,  selected: any):void,
     
 }
 
-export const MeetObjectsRoom : React.FC<MeetObjectsRoomType> = ({objects, selected, setSelected, removeObject}) => {
+export const MeetObjectsRoom : React.FC<MeetObjectsRoomType> = ({objects, selected, setSelected, removeObject, rotateObject, moveSelected}) => {
+
+    useEffect(() => {
+        const doMove = (event : any)=> {
+            moveSelected!!(event, selected);
+        }
+
+        document.removeEventListener('keyup', doMove);
+        document.addEventListener('keyup', doMove);
+
+        return () => {
+            document.removeEventListener('keyup', doMove);
+        }
+    }, [selected]);
 
     const getImageFromObject = (object: any) => {
         if (object && object._id) {
@@ -24,7 +39,7 @@ export const MeetObjectsRoom : React.FC<MeetObjectsRoomType> = ({objects, select
     const getClassFromObject = (object: any) => {
         let style = '';
 
-        switch(object.y) {
+        switch(object.y){
             case 0: {
                 style += 'row-one '
                 break;
@@ -53,11 +68,15 @@ export const MeetObjectsRoom : React.FC<MeetObjectsRoomType> = ({objects, select
                 style += 'row-seven '
                 break;
             }
+            case 7: {
+                style += 'row-eight '
+                break;
+            }
             default:
                 break;
         }
 
-        switch(object.x) {
+        switch(object.x){
             case 0: {
                 style += 'column-one '
                 break;
@@ -86,9 +105,14 @@ export const MeetObjectsRoom : React.FC<MeetObjectsRoomType> = ({objects, select
                 style += 'column-seven '
                 break;
             }
+            case 7: {
+                style += 'column-eight '
+                break;
+            }
             default:
                 break;
         }
+        
         if(object.name === selected?.name) {
             style += 'selected '
         }
@@ -122,6 +146,7 @@ export const MeetObjectsRoom : React.FC<MeetObjectsRoomType> = ({objects, select
                             onClick={() => selected?.name === object.name ? setSelected!!(null) : setSelected!!(object)}
                                 src={getImageFromObject(object)}
                                 className={getClassFromObject(object)}
+                                style={{zIndex: object.zindex}}
                                 />)
                         }
                     </div>
@@ -129,11 +154,11 @@ export const MeetObjectsRoom : React.FC<MeetObjectsRoomType> = ({objects, select
                         <div className={selected?._id ? 'active' : ''}>
                             <img src={trashIcon} onClick={() => selected?._id ? removeObject!!(selected) : null} />
                         </div>
-                        <div >
-                            <img src={rigthIcon} />
+                        <div className={selected?._id && (selected?.type === 'chair' || selected?.type === 'couch') ? 'active' : ''}>
+                            <img src={rigthIcon}onClick={() => selected?._id ? rotateObject!!(selected, 'right') : null} />
                         </div>
-                        <div>
-                            <img src={leftIcon} />
+                        <div className={selected?._id && (selected?.type === 'chair' || selected?.type === 'couch') ? 'active' : ''}>
+                            <img src={leftIcon} onClick={() => selected?._id ? rotateObject!!(selected, 'left') : null}/>
                         </div>
                     </div>
                 </div>
