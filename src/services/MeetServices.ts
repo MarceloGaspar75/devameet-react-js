@@ -14,7 +14,7 @@ export class MeetServices extends HttpApiServices {
     }
 
     async getMeetObjectsById(id: string){
-        return await this.get(this.baseUrl+'/objects'+id);
+        return await this.get(this.baseUrl+'/objects/'+id);
     }
 
 
