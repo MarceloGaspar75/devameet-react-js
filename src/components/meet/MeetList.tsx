@@ -7,10 +7,12 @@ import { Modal } from "react-bootstrap";
 const meetServices = new MeetServices();
 
 type MeetListProps = {
-    setObjects(o: any):void
+    setObjects(o: any): void,
+    setLink(s: string): void
 }
 
-export const MeetList : React.FC<MeetListProps>= (setObjects) => {
+
+export const MeetList : React.FC<MeetListProps>= ({setObjects, setLink}) => {
 
     const [meets, setMeets] = useState([]);
     const [showModal, setShowModal] = useState(false);
@@ -37,16 +39,17 @@ export const MeetList : React.FC<MeetListProps>= (setObjects) => {
         setShowModal(false);
     }
 
-    const selectMeetWithObjects = async (id: string) => {
+    const selectMeetWithObjects = async (meet: any) => {
         try {
-            const objectsResult = await meetServices.getMeetObjectsById(meetId);
+            const objectsResult = await meetServices.getMeetObjectsById(meet?.id);
 
         if (objectsResult?.data) {
             const newObjects = objectsResult?.data?.map((e: any) => {
                 return { ...e, type: e?.name?.split('_')[0] }
             });
-            setObjects(newObjects);
-            setSelected(id);
+             setObjects(newObjects);
+            setSelected(meet?.id);
+            setLink(meet?.link);
         }
         } catch (e) {
             console.log('Ocorreu erro ao listar objetos', e);

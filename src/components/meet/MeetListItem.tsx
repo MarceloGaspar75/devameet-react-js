@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 type MeetListItemProps ={
     meet: any,
     selected: string,
-    selectMeet(id: string): void,
+    selectMeet(meet: any): void,
     selectToRemove(id: string):void
 }
 
@@ -30,7 +30,7 @@ export const MeetListItem: React.FC <MeetListItemProps> = ({meet, selectToRemove
 
     return (
         <div className="container-meet-list-item">
-            <div className="meet" onClick={() => selectMeet(meet?.id)}>
+            <div className="meet" onClick={() => selectMeet(meet)}>
                 <div className="color" style={{backgroundColor : meet.color}}/>
                 <span className={selected === meet?.id ? 'selected' : ''}>{meet.name}</span>
             </div>

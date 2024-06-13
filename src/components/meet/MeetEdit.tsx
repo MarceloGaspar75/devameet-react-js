@@ -31,13 +31,13 @@ export const MeetEdit = () => {
 
     const navigate = useNavigate();
 
-    const {meetId} = useParams();
+    const {Id} = useParams();
     const getMeet = async () => {
-        if(!meetId){
+        if(!Id){
             return navigate('/');
         }
         
-        const result = await meetServices.getMeetById(meetId);
+        const result = await meetServices.getMeetById(Id);
 
         if(!result?.data){
             return navigate('/');
@@ -49,7 +49,7 @@ export const MeetEdit = () => {
         setName(name);
         setColor(color);
 
-        const objectsResult = await meetServices.getMeetObjectsById(meetId);
+        const objectsResult = await meetServices.getMeetObjectsById(Id);
 
         if (objectsResult?.data) {
             const newObjects = objectsResult?.data?.map((e: any) => {

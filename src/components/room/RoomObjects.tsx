@@ -1,9 +1,11 @@
+import linkIcon from '../../assets/images/link_preview.svg';
 
 type RoomObjectsProps = {
-    objects: Array<any>
+    objects: Array<any>,
+    enterRoom():void
 }
 
-export const RoomObjects : React.FC<RoomObjectsProps>= ({objects}) => {
+export const RoomObjects : React.FC<RoomObjectsProps>= ({objects, enterRoom}) => {
 
     const getImageFromObject = (object: any) => {
         if (object && object._id) {
@@ -104,9 +106,13 @@ export const RoomObjects : React.FC<RoomObjectsProps>= ({objects}) => {
                             <img key={object._id}
                                 src={getImageFromObject(object)}
                                 className={getClassFromObject(object)}
-                                style={{zIndex: object.zindex}}
+                                style={{zIndex: object.zIndex}}
                                 />)
                         }
+                        <div className="preview" >
+                            <img src={linkIcon} alt="Entrar na sala"/>
+                            <button onClick={enterRoom}>Entrar na sala</button>
+                        </div>
                     </div>
                     
                 </div>

@@ -5,7 +5,7 @@
         "canRotate": false,
         "defaultXPosition": 0,
         "defaultYPosition": 0,
-        "defaultZIndex": 0,
+        "defaultzIndex": 0,
         "flexStart": true,
         "objects": [
             "wall_01",
@@ -19,7 +19,7 @@
         "canRotate": false,
         "defaultXPosition": 0,
         "defaultYPosition": 1,
-        "defaultZIndex": 0,
+        "defaultzIndex": 0,
         "flexStart": true,
         "objects": [
             "floor_01",
@@ -36,7 +36,7 @@
         "canRotate": false,
         "defaultXPosition": 2,
         "defaultYPosition": 3,
-        "defaultZIndex": 1,
+        "defaultzIndex": 1,
         "objects": [
             "rug_01",
             "rug_02",
@@ -49,7 +49,7 @@
         "canRotate": false,
         "defaultXPosition": 2,
         "defaultYPosition": 3,
-        "defaultZIndex": 2,
+        "defaultzIndex": 2,
         "objects": [
             "table_01",
             "table_02",
@@ -65,7 +65,7 @@
         "canRotate": true,
         "defaultXPosition": 2,
         "defaultYPosition": 3,
-        "defaultZIndex": 2,
+        "defaultzIndex": 2,
         "objects": [
             "chair_01_blue",
             "chair_01_red",
@@ -81,7 +81,7 @@
         "canRotate": true,
         "defaultXPosition": 2,
         "defaultYPosition": 3,
-        "defaultZIndex": 2,
+        "defaultzIndex": 2,
         "objects": [
             "couch_01",
             "couch_02",
@@ -94,7 +94,7 @@
         "canRotate": false,
         "defaultXPosition": 2,
         "defaultYPosition": 3,
-        "defaultZIndex": 3,
+        "defaultzIndex": 3,
         "objects": [
             "decor_01",
             "decor_02",
@@ -112,7 +112,7 @@
         "canRotate": false,
         "defaultXPosition": 2,
         "defaultYPosition": 3,
-        "defaultZIndex": 3,
+        "defaultzIndex": 3,
         "objects": [
             "nature_01",
             "nature_02",
