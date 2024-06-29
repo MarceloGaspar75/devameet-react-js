@@ -41,7 +41,7 @@ class PeerConnectionSession {
     }
 
     updateUserMute(data: any) {
-        this.socket.emit('toggl-mute-user', data);
+        this.socket.emit('toggle-mute-user', data);
     }
 
     addPeerConnection(id: string, stream: any, callback: any) {

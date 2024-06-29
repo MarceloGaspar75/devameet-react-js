@@ -84,9 +84,8 @@ export const RoomHome = () => {
         }
     }, [])
 
-
     const enterRoom = () => {
-        if(!userMediaStream){
+        if (!userMediaStream) {
             return setShowModal(true);
         }
 
@@ -108,7 +107,7 @@ export const RoomHome = () => {
                 }
 
                 const usersWithoutMe = users.filter((u : any) => u.user !== userId);
-                for(const user of usersWithoutMe){
+                for (const user of usersWithoutMe) {
                     wsServices.addPeerConnection(user.clientId, userMediaStream, (_stream : any) => {
                         if (document.getElementById(user.clientId)) {
                             const videoRef: any = document.getElementById(user.clientId);
@@ -220,7 +219,6 @@ export const RoomHome = () => {
 
     return (
         <>
-
             <div className="container-principal">
                 <div className="container-room">
                     {
@@ -233,10 +231,9 @@ export const RoomHome = () => {
                                         <img src={copyIcon} />
                                     </div>
                                     <p style={{ color }}>{name}</p>
-                                    <audio id='localVideoRef' playsInline autoPlay muted />
+                                    <video id='localVideoRef' playsInline autoPlay muted />
                                     {getUsersWithoutMe()?.map((user: any) =>
-                                        <audio key={user.clientId} id={user.clientId}
-                                            playsInline autoPlay muted={user?.muted}/>
+                                        <video key={user.clientId} id={user.clientId} playsInline autoPlay />
                                     )}
                                 </div>
                                 <RoomObjects
@@ -264,7 +261,6 @@ export const RoomHome = () => {
                                         </div>
                                     </div>}
                             </>
-
                             :
                             <div className="empty">
                                 <img src={emptyIcon} />
@@ -281,7 +277,7 @@ export const RoomHome = () => {
                     <div className="content">
                         <div className="container">
                             <span>Aviso!</span>
-                            <p>Habilite a permissão de audio e vídeo para participar das reuniões.</p>
+                            <p>Habilite a permissão de áudio e vídeo para participar das reuniões.</p>
                         </div>
                         <div className="actions">
                             <button onClick={() => setShowModal(false)}>Ok</button>
@@ -290,6 +286,5 @@ export const RoomHome = () => {
                 </Modal.Body>
             </Modal>
         </>
-
     );
 }
